@@ -15,7 +15,7 @@ module master_mac_transmit_rx_tx(
     clk_200,  //mmcm_clk_200m
     clk_15_625,  //mmcm_clk_15.625m
     mmcm_locked,  //mmcm_clk_locked
-    reset,  //锟解部锟斤拷位锟脚猴�?
+    reset,  //閿熻В閮ㄩ敓鏂ゆ嫹浣嶉敓鑴氱尨锟????
     core_reset,
     rgmii_rxd,
     rgmii_rx_ctl,
@@ -25,10 +25,10 @@ module master_mac_transmit_rx_tx(
     rgmii_txc,
     clk_125_master_out,
     clk_125_90_master_out,
-    mac_rx_valid,  // output wire m_axis_tvalid指示 Master 准锟斤拷锟斤拷锟斤拷
-    mac_rx_data,  // output wire [63 : 0] m_axis_tdata锟斤拷效锟斤拷锟斤拷锟斤�?
+    mac_rx_valid,  // output wire m_axis_tvalid鎸囩ず Master 鍑嗛敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
+    mac_rx_data,  // output wire [63 : 0] m_axis_tdata閿熸枻鎷锋晥閿熸枻鎷烽敓鏂ゆ嫹閿熸枻锟????
     mac_rx_keep,  // output wire [7 : 0] m_axis_tkeep
-    mac_rx_last,  // output wire m_axis_tlast 指示 packet 锟侥边斤�?
+    mac_rx_last,  // output wire m_axis_tlast 鎸囩ず packet 閿熶茎杈规枻锟????
     mac_rx_ready,
     mac_tx_valid,
     mac_tx_data,  //
@@ -43,7 +43,7 @@ module master_mac_transmit_rx_tx(
   input clk_200;
   input clk_15_625;
   input mmcm_locked;
-  input reset;  //锟解部锟斤拷位锟脚猴�?
+  input reset;  //閿熻В閮ㄩ敓鏂ゆ嫹浣嶉敓鑴氱尨锟????
   output core_reset;
 
   output clk_125_master_out;
@@ -58,11 +58,11 @@ module master_mac_transmit_rx_tx(
 
   //-------------------------------------inter_data----------------------//
 
-  output mac_rx_valid;  // output wire m_axis_tvalid指示 Master 准锟斤拷锟斤拷锟斤拷
+  output mac_rx_valid;  // output wire m_axis_tvalid鎸囩ず Master 鍑嗛敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 
-  output  [63:0]  mac_rx_data;  // output wire [63 : 0] m_axis_tdata锟斤拷效锟斤拷锟斤拷锟斤�?
+  output  [63:0]  mac_rx_data;  // output wire [63 : 0] m_axis_tdata閿熸枻鎷锋晥閿熸枻鎷烽敓鏂ゆ嫹閿熸枻锟????
   output  [7:0] mac_rx_keep;  // output wire [7 : 0] m_axis_tkeep
-  output mac_rx_last;  // output wire m_axis_tlast 指示 packet 锟侥边斤�?
+  output mac_rx_last;  // output wire m_axis_tlast 鎸囩ず packet 閿熶茎杈规枻锟????
   input    mac_rx_ready;
   input   [63:0]  mac_tx_data;
   input mac_tx_valid;
@@ -113,8 +113,8 @@ module master_mac_transmit_rx_tx(
   wire        s_axi_rready;
 
   wire        m_axis_tvalid1;
-  wire [63:0] m_axis_tdata1;
-  wire [ 7:0] m_axis_tkeep1;
+  wire [7:0] m_axis_tdata1;
+  wire [ 0:0] m_axis_tkeep1;
   wire        m_axis_tready1;
   wire        m_axis_tlast1;
   wire        m_axis_tvalid2;
@@ -167,9 +167,9 @@ module master_mac_transmit_rx_tx(
                                                   .gtx_clk      (clk_125),
                                                   .core_clk     (clk_15_625),
                                                   // asynchronous resets
-                                                  .glbl_rst     (reset),       //锟斤拷锟斤拷glbl_rstn为全锟街革拷位锟脚号ｏ拷锟斤拷锟节革拷位锟斤拷锟斤拷IP锟剿★拷
+                                                  .glbl_rst     (reset),       //閿熸枻鎷烽敓鏂ゆ嫹glbl_rstn涓哄叏閿熻闈╂嫹浣嶉敓鑴氬彿锝忔嫹閿熸枻鎷烽敓鑺傞潻鎷蜂綅閿熸枻鎷烽敓鏂ゆ嫹IP閿熷壙鈽呮嫹
                                                   .reset_error  (1'b0),
-                                                  .rx_reset     (rx_reset),    //tx_reset 锟斤�? rx_reset 锟街憋拷锟斤拷锟节憋拷示 IP 锟剿的凤拷锟酵和斤拷锟秸诧拷锟斤拷锟竭硷拷锟侥革拷位状�??
+                                                  .rx_reset     (rx_reset),    //tx_reset 閿熸枻锟???? rx_reset 閿熻鎲嬫嫹閿熸枻鎷烽敓鑺傛唻鎷风ず IP 閿熷壙鐨勫嚖鎷烽敓閰靛拰鏂ゆ嫹閿熺Ц璇ф嫹閿熸枻鎷烽敓绔》鎷烽敓渚ラ潻鎷蜂綅鐘讹拷??
                                                   .tx_reset     (tx_reset),
 
                                                   .dcm_locked   (mmcm_locked),
@@ -187,26 +187,26 @@ module master_mac_transmit_rx_tx(
   --	
   *********************************************************************/
   tri_mode_ethernet_mac_master u_tri_mode_ethernet_mac (
-                                 .gtx_clk             (clk_125),    //gtx_clk �? IP 锟剿癸拷锟斤拷锟斤拷全锟斤拷时锟斤拷源锟斤拷频锟斤拷 125MHz
+                                 .gtx_clk             (clk_125),    //gtx_clk 锟???? IP 閿熷壙鐧告嫹閿熸枻鎷烽敓鏂ゆ嫹鍏ㄩ敓鏂ゆ嫹鏃堕敓鏂ゆ嫹婧愰敓鏂ゆ嫹棰戦敓鏂ゆ嫹 125MHz
                                  .gtx_clk_out         (clk_125_master_out),
                                  .gtx_clk90_out       (clk_125_90_master_out),
-                                 .refclk              (clk_200),             // Reference clock for IDELAYCTRL's锟斤拷锟斤拷锟斤拷锟斤拷GMII锟斤拷RGMI锟斤拷锟斤拷锟叫匡拷锟斤拷锟斤拷要锟斤拷
+                                 .refclk              (clk_200),             // Reference clock for IDELAYCTRL's閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹GMII閿熸枻鎷稲GMI閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鍖℃嫹閿熸枻鎷烽敓鏂ゆ嫹瑕侀敓鏂ゆ嫹
                                  // asynchronous reset
-                                 .glbl_rstn           (glbl_rst_intn),//为全锟街革拷位锟脚猴�?
-                                 .rx_axi_rstn         (1'b1),  //锟街憋拷锟斤拷锟节碉拷锟斤拷锟斤拷位锟斤拷锟秸和凤拷锟酵诧拷锟街碉拷锟竭硷拷锟斤拷一锟斤拷锟斤拷锟斤拷使锟斤�?
+                                 .glbl_rstn           (glbl_rst_intn),//涓哄叏閿熻闈╂嫹浣嶉敓鑴氱尨锟????
+                                 .rx_axi_rstn         (1'b1),  //閿熻鎲嬫嫹閿熸枻鎷烽敓鑺傜鎷烽敓鏂ゆ嫹閿熸枻鎷蜂綅閿熸枻鎷烽敓绉稿拰鍑ゆ嫹閿熼叺璇ф嫹閿熻纰夋嫹閿熺纭锋嫹閿熸枻鎷蜂竴閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷蜂娇閿熸枻锟????
                                  .tx_axi_rstn         (1'b1),
                                  // Receiver Interface   inter_data_out
                                  .rx_statistics_vector(),
                                  .rx_statistics_valid (),
-                                 .rx_mac_aclk         (rx_mac_aclk),      //锟斤拷锟斤拷锟斤拷斩锟绞憋拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟接匡拷锟较斤拷锟斤拷锟斤拷锟捷碉拷时锟接ｏ拷
-                                 //      锟斤拷时锟斤拷应锟斤拷锟斤拷为锟斤拷锟斤拷涌诮锟斤拷盏锟铰凤拷锟絉X AXI4-Stream锟斤拷锟秸碉拷路锟结供时锟接★拷
-                                 .rx_reset            (rx_reset),       // 锟竭碉拷平锟斤拷�? RX锟斤拷锟街碉拷锟斤拷�?
+                                 .rx_mac_aclk         (rx_mac_aclk),      //閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷锋柀閿熺粸鎲嬫嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鎺ュ尅鎷烽敓杈冩枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鎹风鎷锋椂閿熸帴锝忔嫹
+                                 //      閿熸枻鎷锋椂閿熸枻鎷峰簲閿熸枻鎷烽敓鏂ゆ嫹涓洪敓鏂ゆ嫹閿熸枻鎷锋秾璇敓鏂ゆ嫹鐩忛敓閾板嚖鎷烽敓绲塜 AXI4-Stream閿熸枻鎷烽敓绉哥鎷疯矾閿熺粨渚涙椂閿熸帴鈽呮嫹
+                                 .rx_reset            (rx_reset),       // 閿熺纰夋嫹骞抽敓鏂ゆ嫹锟???? RX閿熸枻鎷烽敓琛楃鎷烽敓鏂ゆ嫹锟????
                                  .rx_axis_mac_tdata   (rx_axis_mac_tdata), //8 bits data
                                  .rx_axis_mac_tvalid  (rx_axis_mac_tvalid), //data VALID
                                  .rx_axis_mac_tlast   (rx_axis_mac_tlast),   //last data
                                  .rx_axis_mac_tuser   (rx_axis_mac_tuser),
                                  // Transmitter Interface   /inter_data_in
-                                 .tx_ifg_delay        (8'd0),//tx_ifg_delay 锟斤拷锟斤拷锟斤拷锟矫凤拷锟酵硷拷锟斤拷锟揭伙拷愣寄拷喜锟斤拷锟斤拷锟叫★拷锟斤拷锟斤拷锟斤拷 tx_ifg_delay 锟斤拷为 0 锟斤拷锟斤拷
+                                 .tx_ifg_delay        (8'd0),//tx_ifg_delay 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鐭嚖鎷烽敓閰电》鎷烽敓鏂ゆ嫹閿熸彮浼欐嫹鎰ｅ瘎顒婃嫹鍠滈敓鏂ゆ嫹閿熸枻鎷烽敓鍙槄鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹 tx_ifg_delay 閿熸枻鎷蜂负 0 閿熸枻鎷烽敓鏂ゆ嫹
                                  .tx_statistics_vector(),
                                  .tx_statistics_valid (),
                                  .tx_mac_aclk         (tx_mac_aclk),
@@ -233,7 +233,7 @@ module master_mac_transmit_rx_tx(
                                  .inband_clock_speed  (),
                                  .inband_duplex_status(),
                                  // AXI lite interface
-                                 .s_axi_aclk          (clk_125), // s_axi_aclk �? AXI-Lite 锟接口碉拷同锟斤拷时锟斤�?
+                                 .s_axi_aclk          (clk_125), // s_axi_aclk 锟???? AXI-Lite 閿熸帴鍙ｇ鎷峰悓閿熸枻鎷锋椂閿熸枻锟????
                                  .s_axi_resetn        (s_axi_resetn),
                                  .s_axi_awaddr        (s_axi_awaddr),
                                  .s_axi_awvalid       (s_axi_awvalid),
@@ -254,172 +254,85 @@ module master_mac_transmit_rx_tx(
                                  .mac_irq             ()
                                );
 
-
-
-
-
-  reg  error_flag;
-
-
-  iput_buffer_data_fifo_rx   rx_indicated_error (
-                               .s_axis_aresetn(gtx_resetn),  // input wire s_axis_aresetn
-                               .s_axis_aclk(rx_mac_aclk),        // input wire s_axis_aclk
-                               .s_axis_tvalid(rx_axis_mac_tvalid),    // input wire s_axis_tvalid
-                               .s_axis_tready(),    // output wire s_axis_tready
-                               .s_axis_tdata(rx_axis_mac_tdata),      // input wire [63 : 0] s_axis_tdata
-                               .s_axis_tkeep(1'b1),      // input wire [7 : 0] s_axis_tkeep
-                               .s_axis_tlast(rx_axis_mac_tlast),      // input wire s_axis_tlast
-                               .m_axis_tvalid(m_axis_tvalid5),    // output wire m_axis_tvalid
-                               .m_axis_tready(m_axis_tready5),    // input wire m_axis_tready
-                               .m_axis_tdata(m_axis_tdata5),      // output wire [63 : 0] m_axis_tdata
-                               .m_axis_tkeep(m_axis_tkeep5),      // output wire [7 : 0] m_axis_tkeep
-                               .m_axis_tlast(m_axis_tlast5)      // output wire m_axis_tlast
-                             );
-
-
-  always@(rx_axis_mac_tlast)
+  reg error_flag;
+  always @(rx_axis_mac_tlast)
   begin
-    if(rx_axis_mac_tlast)
-      error_flag<=rx_axis_mac_tlast&rx_axis_mac_tuser;
+    if (rx_axis_mac_tlast)
+      error_flag = rx_axis_mac_tlast & rx_axis_mac_tuser;
   end
-
-
 
 
   /*********************************************************************
   --rx_axis_dwidth_converter
-  --
-  --	
   *********************************************************************/
   axis_dwidth_converter_RX rx_axis_dwidth_converter0 (   //锟斤拷锟斤拷锟斤拷锟斤拷位锟斤拷转锟斤拷
-                             .aclk         (rx_mac_aclk),         // input wire aclk   锟斤拷锟秸讹拷时锟斤�?
-                             .aresetn      (gtx_resetn),          // input wire aresetn
-                             .s_axis_tvalid(m_axis_tvalid5&!error_flag),  // input wire s_axis_tvalid
-                             .s_axis_tready(m_axis_tready5),                    // output wire s_axis_tready
-                             .s_axis_tdata (m_axis_tdata5),   // input wire [7 : 0] s_axis_tdata
-                             .s_axis_tkeep (m_axis_tkeep5),                // input wire [0 : 0] s_axis_tkeep
-                             .s_axis_tlast (m_axis_tlast5),   // input wire s_axis_tlast
-                             .m_axis_tvalid(m_axis_tvalid3),      // output wire m_axis_tvalid
-                             .m_axis_tready(m_axis_tready3),      // input wire m_axis_tready
-                             .m_axis_tdata (m_axis_tdata3),       // output wire [63 : 0] m_axis_tdata
-                             .m_axis_tkeep (m_axis_tkeep3),       // output wire [7 : 0] m_axis_tkeep
-                             .m_axis_tlast (m_axis_tlast3)        // output wire m_axis_tlast
+                             .aclk(rx_mac_aclk),  // input wire aclk   锟斤拷锟秸讹拷时锟斤拷
+                             .aresetn(gtx_resetn),  // input wire aresetn
+                             .s_axis_tvalid(rx_axis_mac_tvalid),  // input wire s_axis_tvalid
+                             .s_axis_tready(),  // output wire s_axis_tready
+                             .s_axis_tdata(rx_axis_mac_tdata),  // input wire [7 : 0] s_axis_tdata
+                             .s_axis_tkeep(1),  // input wire [0 : 0] s_axis_tkeep
+                             .s_axis_tlast(rx_axis_mac_tlast),  // input wire s_axis_tlast
+                             .m_axis_tvalid(m_axis_tvalid3),  // output wire m_axis_tvalid
+                             .m_axis_tready(m_axis_tready3),  // input wire m_axis_tready
+                             .m_axis_tdata(m_axis_tdata3),  // output wire [63 : 0] m_axis_tdata
+                             .m_axis_tkeep(m_axis_tkeep3),  // output wire [7 : 0] m_axis_tkeep
+                             .m_axis_tlast(m_axis_tlast3)  // output wire m_axis_tlast
 
                            );
-  /*********************************************************************
-  --rx_async_fifo
-  --
-  --	
-  *********************************************************************/
-  axis_data_fifo_rx_async rx_fifo_0 (        //锟届步FIFO
-                            .s_axis_aresetn    (gtx_resetn),      // input wire s_axis_aresetn
-                            //
-                            .s_axis_aclk       (rx_mac_aclk),     // input wire s_axis_aclk
-                            .s_axis_tvalid     (m_axis_tvalid3),  // input wire s_axis_tvalid
-                            .s_axis_tready     (m_axis_tready3),  // output wire s_axis_tready
-                            .s_axis_tdata      (m_axis_tdata3),   // input wire [63 : 0] s_axis_tdata
-                            .s_axis_tkeep      (m_axis_tkeep3),   // input wire [7 : 0] s_axis_tkeep
-                            .s_axis_tlast      (m_axis_tlast3),   // input wire s_axis_tlast
-
-                            .m_axis_aclk      (clk_15_625),      // input wire m_axis_aclk
-                            .m_axis_tvalid     (m_axis_tvalid4),  // output wire m_axis_tvalid
-                            .m_axis_tready     (m_axis_tready4),  // input wire m_axis_tready
-                            .m_axis_tdata      (m_axis_tdata4),   // output wire [63 : 0] m_axis_tdata
-                            .m_axis_tkeep      (m_axis_tkeep4),   // output wire [7 : 0] m_axis_tkeep
-                            .m_axis_tlast      (m_axis_tlast4)   // output wire m_axis_tlast
-
+  axis_data_fifo_rx_async rx_fifo_0 (  //FIFO
+                            .s_axis_aresetn(gtx_resetn),      // input wire s_axis_aresetn
+                            .s_axis_aclk   (rx_mac_aclk),     // input wire s_axis_aclk
+                            .s_axis_tvalid (m_axis_tvalid3),  // input wire s_axis_tvalid
+                            .s_axis_tready (m_axis_tready3),  // output wire s_axis_tready
+                            .s_axis_tdata  (m_axis_tdata3),   // input wire [63 : 0] s_axis_tdata
+                            .s_axis_tkeep  (m_axis_tkeep3),   // input wire [7 : 0] s_axis_tkeep
+                            .s_axis_tlast  (m_axis_tlast3),   // input wire s_axis_tlast
+                            .m_axis_aclk  (clk_125),      // input wire m_axis_aclk
+                            .m_axis_tvalid     (mac_rx_valid),    // output wire m_axis_tvalid指示 Master 准锟斤拷锟斤拷锟斤拷
+                            .m_axis_tready     (mac_rx_ready),// (1'b1),            // input wire m_axis_tready//指示 Slave 准锟斤拷锟斤拷锟斤拷
+                            .m_axis_tdata      (mac_rx_data),     // output wire [63 : 0] m_axis_tdata锟斤拷效锟斤拷锟斤拷锟斤拷
+                            .m_axis_tkeep(mac_rx_keep),  // output wire [7 : 0] m_axis_tkeep
+                            .m_axis_tlast(mac_rx_last)
                           );
-  /*********************************************************************
-  --rx_packet_fifo
-  --
-  --	
-  *********************************************************************/
-  axis_data_fifo_rx_async_buffer rx_fifo_1 (
-                                   .s_axis_aresetn    (~core_reset),     // input wire s_axis_aresetn
-                                   .s_axis_aclk       (clk_15_625),      // input wire s_axis_aclk
-                                   .s_axis_tvalid     (m_axis_tvalid4),  // input wire s_axis_tvalid
-                                   .s_axis_tready     (m_axis_tready4),  // output wire s_axis_tready
-                                   .s_axis_tdata      (m_axis_tdata4),   // input wire [63 : 0] s_axis_tdata
-                                   .s_axis_tkeep      (m_axis_tkeep4),   // input wire [7 : 0] s_axis_tkeep
-                                   .s_axis_tlast      (m_axis_tlast4),   // input wire s_axis_tlast
-
-                                   .m_axis_aclk       (clk_125),
-                                   .m_axis_tvalid     (mac_rx_valid),    // output wire m_axis_tvalid指示 Master 准锟斤拷锟斤拷锟斤拷
-                                   .m_axis_tready     (mac_rx_ready),    // input wire m_axis_tready//指示 Slave 准锟斤拷锟斤拷锟斤拷
-                                   .m_axis_tdata      (mac_rx_data),     // output wire [63 : 0] m_axis_tdata锟斤拷效锟斤拷锟斤拷锟斤�?
-                                   .m_axis_tkeep      (mac_rx_keep),     // output wire [7 : 0] m_axis_tkeep
-                                   .m_axis_tlast      (mac_rx_last)     // output wire m_axis_tlast 指示 packet 锟侥边斤�?
-
-                                 );
-
-  /*********************************************************************
-  --axis_data_fifo_1
-  --
-  --	
-  *********************************************************************/
-
-  axis_data_fifo_tx_inter tx_async_fifo_0 (  //asyn FIFO
-                            .s_axis_aresetn    (~core_reset),     // input wire s_axis_aresetn
-                            .s_axis_aclk       (clk_15_625),         // input wire s_axis_aclk
-                            .s_axis_tvalid     (mac_tx_valid),    // input wire s_axis_tvalid
-                            .s_axis_tready     (mac_tx_ready),    // output wire s_axis_tready
-                            .s_axis_tdata      (mac_tx_data),     // input wire [63 : 0] s_axis_tdata
-                            .s_axis_tkeep      (mac_tx_keep),     // input wire [7 : 0] s_axis_tkeep
-                            .s_axis_tlast      (mac_tx_last),     // input wire s_axis_tlast
-                            .s_axis_tuser      (1'b0),            // input wire [0 : 0] s_axis_tuser
-                            .m_axis_aclk       (tx_mac_aclk),     // input wire m_axis_aclk
-                            .m_axis_tvalid     (m_axis_tvalid1),  // output wire m_axis_tvalid
-                            .m_axis_tready     (m_axis_tready1),  // input wire m_axis_tready
-                            .m_axis_tdata      (m_axis_tdata1),   // output wire [63 : 0] m_axis_tdata
-                            .m_axis_tkeep      (m_axis_tkeep1),   // output wire [7 : 0] m_axis_tkeep
-                            .m_axis_tlast      (m_axis_tlast1),  // output wire m_axis_tlast
-                            .m_axis_tuser(),              // output wire [0 : 0] m_axis_tuser
-                            .axis_wr_data_count()  // output wire [31 : 0] axis_wr_data_count
-                          );
-
-
-
-
-
-  /*******************************--tx_packet_fifo */
-  axis_data_fifo_tx tx_packet_fifo_1 (  //
-                      .s_axis_aresetn(gtx_resetn),      // input wire s_axis_aresetn
-                      .s_axis_aclk   (tx_mac_aclk),     // input wire s_axis_aclk
-                      .s_axis_tvalid (m_axis_tvalid1),  // input wire s_axis_tvalid
-                      .s_axis_tready (m_axis_tready1),  // output wire s_axis_tready
-                      .s_axis_tdata  (m_axis_tdata1),   // input wire [63 : 0] s_axis_tdata
-                      .s_axis_tkeep  (m_axis_tkeep1),   // input wire [7 : 0] s_axis_tkeep
-                      .s_axis_tlast  (m_axis_tlast1),   // input wire s_axis_tlast
-                      .s_axis_tuser  (1'b0),            // input wire [0 : 0] s_axis_tuser
-                      .m_axis_tvalid (m_axis_tvalid2),  // output wire m_axis_tvalid
-                      .m_axis_tready (m_axis_tready2),               // input wire m_axis_tready
-                      .m_axis_tdata  (m_axis_tdata2),   // output wire [63 : 0] m_axis_tdata
-                      .m_axis_tkeep  (m_axis_tkeep2),   // output wire [7 : 0] m_axis_tkeep
-                      .m_axis_tlast  (m_axis_tlast2)   // output wire m_axis_tlast
-                      // output wire [0 : 0] m_axis_tuser
-                    );
-
-
-
 
   /*********************************************************************
   --tx_axis_dwidth_converter
 
   *********************************************************************/
   axis_dwidth_converter_TX      tx_converter0 (
-                                  .aclk         (tx_mac_aclk),         // input wire aclk
-                                  .aresetn      (gtx_resetn),          // input wire aresetn
-                                  .s_axis_tvalid(m_axis_tvalid2),      // input wire s_axis_tvalid
-                                  .s_axis_tready(m_axis_tready2),      // output wire s_axis_tready
-                                  .s_axis_tdata (m_axis_tdata2),       // input wire [63 : 0] s_axis_tdata
-                                  .s_axis_tkeep (m_axis_tkeep2),       // input wire [7 : 0] s_axis_tkeep
-                                  .s_axis_tlast (m_axis_tlast2),       // input wire s_axis_tlast
-                                  .m_axis_tvalid(tx_axis_mac_tvalid),  // output wire m_axis_tvalid
-                                  .m_axis_tready(tx_axis_mac_tready),  // input wire m_axis_tready
-                                  .m_axis_tdata (tx_axis_mac_tdata),   // output wire [7 : 0] m_axis_tdata
-                                  .m_axis_tkeep (),                    // output wire [0 : 0] m_axis_tkeep
-                                  .m_axis_tlast (tx_axis_mac_tlast)    // output wire m_axis_tlast
+                                  .aclk         (clk_125),         // input wire aclk
+                                  .aresetn    (~core_reset),     // input wire s_axis_aresetn
+                                  .s_axis_tvalid     (mac_tx_valid),    // input wire s_axis_tvalid
+                                  .s_axis_tready     (mac_tx_ready),    // output wire s_axis_tready
+                                  .s_axis_tdata      (mac_tx_data),     // input wire [63 : 0] s_axis_tdata
+                                  .s_axis_tkeep      (mac_tx_keep),     // input wire [7 : 0] s_axis_tkeep
+                                  .s_axis_tlast      (mac_tx_last),     // input wire s_axis_tlast
+                                  .m_axis_tvalid     (m_axis_tvalid1),  // output wire m_axis_tvalid
+                                  .m_axis_tready     (m_axis_tready1),  // input wire m_axis_tready
+                                  .m_axis_tdata      (m_axis_tdata1),   // output wire [63 : 0] m_axis_tdata
+                                  .m_axis_tkeep      (m_axis_tkeep1),   // output wire [7 : 0] m_axis_tkeep
+                                  .m_axis_tlast      (m_axis_tlast1)  // output wire m_axis_tlast
                                 );
+
+
+
+  axis_data_fifo_tx_inter tx_async_fifo_0 (  //asyn FIFO
+                            .s_axis_aresetn    (gtx_resetn),     // input wire s_axis_aresetn
+                            .s_axis_aclk       (clk_125),         // input wire s_axis_aclk
+                            .s_axis_tvalid     (m_axis_tvalid1),    // input wire s_axis_tvalid
+                            .s_axis_tready     (m_axis_tready1),    // output wire s_axis_tready
+                            .s_axis_tdata      (m_axis_tdata1),     // input wire [63 : 0] s_axis_tdata
+                            .s_axis_tkeep      (m_axis_tkeep1),     // input wire [7 : 0] s_axis_tkeep
+                            .s_axis_tlast      (m_axis_tlast1),     // input wire s_axis_tlast
+                            .m_axis_aclk       (tx_mac_aclk),     // input wire m_axis_aclk
+                            .m_axis_tvalid(tx_axis_mac_tvalid),  // output wire m_axis_tvalid
+                            .m_axis_tready(tx_axis_mac_tready),  // input wire m_axis_tready
+                            .m_axis_tdata (tx_axis_mac_tdata),   // output wire [7 : 0] m_axis_tdata
+                            .m_axis_tkeep (),                    // output wire [0 : 0] m_axis_tkeep
+                            .m_axis_tlast (tx_axis_mac_tlast)    // output wire m_axis_tlast
+                          );
+
   /*********************************************************************
   --Instantiate the AXI-LITE Controller
   --
