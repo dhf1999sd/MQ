@@ -17,15 +17,13 @@ MQ realizes Asynchronous Traffic Shaping (ATS) queues as metadata-driven logical
 ## Architecture
 
 <figure>
-  <img src="image/README/mq-architecture.svg" alt="MQ architecture overview on a shared-buffer switch" width="800">
-  <figcaption>Figure 1. Architecture overview.</figcaption>
+  <img src="image/Design overview.svg" alt="MQ architecture overview on a shared-buffer switch" width="800">
+  <figcaption>Figure 1. Design overview.</figcaption>
 </figure>
 
-![Figure 1. Architecture overview](image/README/mq-architecture.svg)
-
-
-
-<figcaption>Figure 2. MQ planes structure.</figcaption>
+<figure>
+  <img src="image/MQ planes structure.svg" alt="Structure of MQ planes" width="800">
+  <figcaption>Figure 2. MQ planes structure.</figcaption>
 </figure>
 
 ## License
