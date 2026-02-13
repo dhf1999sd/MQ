@@ -1,4 +1,4 @@
-# Multiple Queues (MQ) Architecture — FPGA Implementation
+# Multiple Queues (MQ) FPGA Implementation
 
 This repository contains the FPGA implementation of the Multiple Queues (MQ) architecture presented in our paper:
 
