@@ -1,9 +1,9 @@
-# Multiple Queues (MQ) FPGA Implementation
+# Multiple Queues (MQ) 
 
 This repository contains the FPGA implementation of the Multiple Queues (MQ) architecture presented in our paper:
 
 > Designing Multiple Queues to Support Asynchronous Traffic Shaping in Shared-Buffer TSN Switches
-> (submitted to IEEE TCAD)
+> (IEEE TCAD 2026)
 
 MQ realizes Asynchronous Traffic Shaping (ATS) queues as metadata-driven logical queues on top of a shared-buffer switch architecture.
 
