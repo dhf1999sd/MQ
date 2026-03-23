@@ -55,7 +55,7 @@ module shared_buffer_core #(
   reg [3:0]                           input_metadata_wr_en;
   reg [20:0]                          in_metadata;
   reg [31:0]                          flow_id[NUM_PORT-1:0];
-  reg [3:0]                           group_id_in[NUM_PORT-1:0];
+  reg [4:0]                           group_id_in[NUM_PORT-1:0];
   reg [2:0]                           pcp[NUM_PORT-1:0];
   reg [3:0]                           in_port[NUM_PORT-1:0];
   reg [31:0]                          flow_id_reg;
@@ -69,8 +69,8 @@ module shared_buffer_core #(
   reg [3:0]                           valid;
   reg                                 i_cell_ptr_fifo_wr_reg;
   reg [2:0]                           priority_reg;
-  reg [3:0]                           group_id_reg;
-  reg [3:0]                           group_id_reg_reg;
+  reg [4:0]                           group_id_reg;
+    reg [4:0]                           group_id_reg_reg;
   reg [31:0]                          in_flow_ID_reg;
   reg [22:0]                          i_cell_ptr_fifo_din_reg;
   reg [15:0]                          frame_length;
@@ -225,7 +225,7 @@ module shared_buffer_core #(
             start_flag[3:0]                  <= i_cell_ptr_fifo_dout[11:8];
             qm_portmap[3:0]             <= i_cell_ptr_fifo_dout[11:8];
             pcp_reg                     <= i_cell_ptr_fifo_dout[57:55];
-            group_id_reg_reg            <= i_cell_ptr_fifo_dout[61:58];
+            group_id_reg_reg[4:0]            <= i_cell_ptr_fifo_dout[62:58];
             in_port_reg[3:0]            <= i_cell_ptr_fifo_dout[22:19];
             flow_id_reg                 <= i_cell_ptr_fifo_dout[54:23];
             FQ_dout                     <= ptr_dout_s;
@@ -236,15 +236,15 @@ module shared_buffer_core #(
             i_cell_first                <= 1;
             port_map[2:0]            <= i_cell_ptr_fifo_dout[8]?0:i_cell_ptr_fifo_dout[9]? 1:i_cell_ptr_fifo_dout[10]?2:3;
             flow_id[0]     <= i_cell_ptr_fifo_dout[54:23];
-            group_id_in[0] <= i_cell_ptr_fifo_dout[61:58];
+            group_id_in[0][4:0] <= i_cell_ptr_fifo_dout[62:58];
             flow_id[1]     <= i_cell_ptr_fifo_dout[54:23];
-            group_id_in[1] <= i_cell_ptr_fifo_dout[61:58];
+            group_id_in[1][4:0] <= i_cell_ptr_fifo_dout[62:58];
 
             flow_id[2]     <= i_cell_ptr_fifo_dout[54:23];
-            group_id_in[2] <= i_cell_ptr_fifo_dout[61:58];
+            group_id_in[2][4:0] <= i_cell_ptr_fifo_dout[62:58];
 
             flow_id[3]     <= i_cell_ptr_fifo_dout[54:23];
-            group_id_in[3] <= i_cell_ptr_fifo_dout[61:58];
+            group_id_in[3][4:0] <= i_cell_ptr_fifo_dout[62:58];
             if (i_cell_ptr_fifo_dout[7:3] == 'd1)
               i_cell_last <= 1;
             wr_state                <= 'hc;

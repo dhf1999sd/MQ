@@ -26,7 +26,7 @@ module switch_pre #(
     input      [PORT_NUM-1:0]   search_result,
     input                      i_cell_bp,
     input      [3:0]            in_src_port,
-    output wire [3:0]           group_id,
+    output wire [4:0]           group_id,
     output reg  [31:0]          flow_ID,
     output reg  [2:0]           priority,
     output reg  [DATA_WIDTH-1:0] i_cell_data_fifo_dout,

@@ -1,48 +1,28 @@
 module group_id_simple_map(
-    input  wire [3:0] dst_port,  // 目标端口 one-hot
-    input  wire [3:0] src_port,  // 入端口 one-hot
-    input  wire [1:0] pri,       // 优先级
-    output reg  [3:0] group_id
+    input  wire [3:0] dst_port,
+    input  wire [3:0] src_port,
+    input  wire [2:0] pri,
+    output reg  [4:0] group_id
 );
 
     always @(*) begin
-        group_id = 4'd0; // 默认值
-
-        // 入端口和目标端口不会相同（互斥）
-        if(dst_port == 4'b1000) begin
-            case(src_port)
-                4'b0001: group_id = 0 + pri;
-                4'b0010: group_id = 4 + pri;
-                4'b0100: group_id = 8 + pri;
-                default: group_id = 0;
-            endcase
-        end
-        else if(dst_port == 4'b0100) begin
-            case(src_port)
-                4'b0001: group_id = 0 + pri;
-                4'b0010: group_id = 4 + pri;
-                4'b1000: group_id = 8 + pri;
-                default: group_id = 0;
-            endcase
-        end
-        else if(dst_port == 4'b0010) begin
-            case(src_port)
-                4'b0001: group_id = 0 + pri;
-                4'b0100: group_id = 4 + pri;
-                4'b1000: group_id = 8 + pri;
-                default: group_id = 0;
-            endcase
-        end
-        else if(dst_port == 4'b0001) begin
-            case(src_port)
-                4'b0010: group_id = 0 + pri;
-                4'b0100: group_id = 4 + pri;
-                4'b1000: group_id = 8 + pri;
-                default: group_id = 0;
-            endcase
-        end
-        else begin
-            group_id = 0;
+        group_id = {1'b0, pri};
+        if (src_port[0]) begin
+            if      (dst_port[1]) group_id = {1'b0, pri} + 5'd12;
+            else if (dst_port[2]) group_id = {1'b0, pri} + 5'd8;
+            else if (dst_port[3]) group_id = {1'b0, pri};
+        end else if (src_port[1]) begin
+            if      (dst_port[0]) group_id = {1'b0, pri} + 5'd16;
+            else if (dst_port[2]) group_id = {1'b0, pri} + 5'd12;
+            else if (dst_port[3]) group_id = {1'b0, pri} + 5'd4;
+        end else if (src_port[2]) begin
+            if      (dst_port[0]) group_id = {1'b0, pri} + 5'd16;
+            else if (dst_port[1]) group_id = {1'b0, pri} + 5'd8;
+            else if (dst_port[3]) group_id = {1'b0, pri} + 5'd4;
+        end else if (src_port[3]) begin
+            if      (dst_port[0]) group_id = {1'b0, pri} + 5'd16;
+            else if (dst_port[1]) group_id = {1'b0, pri} + 5'd12;
+            else if (dst_port[2]) group_id = {1'b0, pri};
         end
     end
 

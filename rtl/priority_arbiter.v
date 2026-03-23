@@ -11,7 +11,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module priority_arbiter #(
-    parameter P_CHANEL_NUM = 4
+    parameter P_CHANEL_NUM = 8
   ) (
     input                         clk,
     input                         reset,
