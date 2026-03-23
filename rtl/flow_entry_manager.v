@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module flow_entry_manager #(
-    parameter MATCH_ADDR_WIDTH = 9,
+    parameter MATCH_ADDR_WIDTH = 12,
     parameter NUM_FLOW        = 16,
     parameter GROUP_NUMBER    = 256,
     parameter TIME_WIDTH      = 59,
@@ -28,9 +28,9 @@ module flow_entry_manager #(
   )(
     input  wire                     clk,
     input  wire                     reset,
-    input  wire [31:0]             flow_id,
+    input  wire [4:0]             flow_id,
     input  wire                     update_flag,
-    input  wire [4:0]              group_id,
+    input  wire [7:0]              group_id,
     input  wire                     start_match_flag,
     input  wire [TIME_WIDTH-1:0]   update_bucket_empty_time,
     input  wire [TIME_WIDTH-1:0]   update_group_eligibility_time,
@@ -43,7 +43,7 @@ module flow_entry_manager #(
   );
 
   function [MATCH_ADDR_WIDTH-1:0] calc_addr;
-    input [4:0] group;
+    input [7:0] group;
     input [3:0] flow_index;
     begin
       calc_addr = {group, flow_index};
@@ -118,9 +118,18 @@ module flow_entry_manager #(
             addra <= init_addr_counter;
 
             case (init_addr_counter)
-              calc_addr(5'd11, 4'h3): dina <= {59'h0, 32'd320000, 32'd3200};
+              calc_addr(5'd3,  4'h7): dina <= {59'h0, 32'd40000,  32'd512};
+              calc_addr(5'd7,  4'h0): dina <= {59'h0, 32'd40000,  32'd512};
+              calc_addr(5'd7,  4'h1): dina <= {59'h0, 32'd80000,  32'd512};
+              calc_addr(5'd7,  4'h2): dina <= {59'h0, 32'd320000, 32'd1600};
               calc_addr(5'd8,  4'h4): dina <= {59'h0, 32'd160000, 32'd3200};
+              calc_addr(5'd8,  4'h5): dina <= {59'h0, 32'd80000,  32'd512};
               calc_addr(5'd9,  4'h4): dina <= {59'h0, 32'd320000, 32'd3200};
+              calc_addr(5'd11, 4'h3): dina <= {59'h0, 32'd320000, 32'd3200};
+              calc_addr(5'd15, 4'h0): dina <= {59'h0, 32'd64000,  32'd1024};
+              calc_addr(5'd15, 4'h1): dina <= {59'h0, 32'd128000, 32'd2048};
+              calc_addr(5'd20, 4'h2): dina <= {59'h0, 32'd256000, 32'd4096};
+              calc_addr(5'd31, 4'hF): dina <= {59'h0, 32'd500000, 32'd8000};
               default:
                 dina <= 0;
             endcase
