@@ -29,3 +29,23 @@ MQ realizes Asynchronous Traffic Shaping (ATS) queues as metadata-driven logical
 ## License
 
 Released under the MIT License.
+
+## References
+
+- Designing Multiple Queues to Support Asynchronous Traffic Shaping in Shared-Buffer TSN Switches. IEEE TCAD 2026. [PDF](./Designing_Multiple_Queues_to_Support__Asynchronous_Traffic_Shaping_in_TSN_Switches_Submitted_Version.pdf)
+
+BibTeX:
+
+```bibtex
+@article{MQ_TCAD_2026,
+  author  = {<Wenxue Wu, Tong Zhang, Zhen Li, Liwei Zhang, Hao Yang, and Fengyuan Ren>},
+  title   = {Designing Multiple Queues to Support Asynchronous Traffic Shaping in Shared-Buffer TSN Switches},
+  journal = {IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems},
+  year    = {2026},
+  volume  = {<卷>},
+  number  = {<期>},
+  pages   = {<起止页>},
+  doi     = {<DOI>},
+  url     = {<URL>}
+}
+```
