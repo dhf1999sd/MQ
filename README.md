@@ -1,4 +1,4 @@
-# Multiple Queues (MQ) 
+# Multiple Queues (MQ)
 
 This repository contains the FPGA implementation of the Multiple Queues (MQ) architecture presented in our paper:
 
@@ -32,10 +32,6 @@ Released under the MIT License.
 
 ## References
 
-- Designing Multiple Queues to Support Asynchronous Traffic Shaping in Shared-Buffer TSN Switches. IEEE TCAD 2026. [PDF](./Designing_Multiple_Queues_to_Support__Asynchronous_Traffic_Shaping_in_TSN_Switches_Submitted_Version.pdf)
-
-BibTeX:
-
 ```bibtex
 @article{MQ_TCAD_2026,
   author  = {<Wenxue Wu, Tong Zhang, Zhen Li, Liwei Zhang, Hao Yang, and Fengyuan Ren>},
@@ -49,3 +45,4 @@ BibTeX:
   url     = {<URL>}
 }
 ```
+
