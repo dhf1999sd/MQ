@@ -33,16 +33,16 @@ Released under the MIT License.
 ## References
 
 ```bibtex
-@article{MQ_TCAD_2026,
-  author  = {<Wenxue Wu, Tong Zhang, Zhen Li, Liwei Zhang, Hao Yang, and Fengyuan Ren>},
-  title   = {Designing Multiple Queues to Support Asynchronous Traffic Shaping in Shared-Buffer TSN Switches},
-  journal = {IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems},
-  year    = {2026},
-  volume  = {<卷>},
-  number  = {<期>},
-  pages   = {<起止页>},
-  doi     = {<DOI>},
-  url     = {<URL>}
-}
+@ARTICLE{11455258,
+  author={Wu, Wenxue and Zhang, Tong and Li, Zhen and Zhang, Liwei and Yang, Hao and Ren, Fengyuan},
+  journal={IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems}, 
+  title={Designing Multiple Queues to Support Asynchronous Traffic Shaping in TSN Switches}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Time-Sensitive Networking;Multiple Queues;Asynchronous Traffic Shaping;Shared Buffer Switch},
+  doi={10.1109/TCAD.2026.3677291}}
+
 ```
 
