@@ -1,3 +1,17 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company:         TSN@NNS
+// Engineer:        Wenxue Wu
+// Create Date:     2025/11/14
+// Module Name:     comparator
+// Project Name:    MQ
+// Target Devices:  ZYNQ
+// Tool Versions:   VIVADO 2023.2
+// Description:     Comparator module that finds the minimum value and its index
+//                  among three input data values. Outputs the index of the minimum
+//                  value that is valid (not all 1s and less than or equal to local clock).
+//////////////////////////////////////////////////////////////////////////////////
+
 module comparator #(
     parameter DATA_WIDTH = 59
 )(

@@ -2,18 +2,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         TSN@NNS
 // Engineer:        Wenxue Wu
-// Create Date:     2024/8/6
+// Create Date:     2025/8/6
 // Module Name:     switch_pre
+// Project Name:    MQ
 // Target Devices:  ZYNQ
 // Tool Versions:   VIVADO 2023.2
-// Description:     TSN switch packet preprocess
+// Description:     TSN switch packet preprocess module that handles Ethernet frame
+//                  parsing, flow ID extraction, priority detection, and cell formatting.
 //////////////////////////////////////////////////////////////////////////////////
+
 module switch_pre #(
     parameter DATA_WIDTH   = 64,
     parameter CTRL_WIDTH   = DATA_WIDTH / 8,
     parameter PORT_NUM     = 4,
     parameter ETHER_TYPE   = 16'h8100,
-    parameter ETHER_TYPE_2 = 16'h0800
+    parameter ETHER_TYPE_2 = 16'h0808
   )(
     input                      clk,
     input                      reset,
@@ -198,7 +201,7 @@ module switch_pre #(
           end
           else
           begin
-            i_cell_data_fifo_dout <= 64'hFFEEDDCCBBAA9988;          // pad magic
+            i_cell_data_fifo_dout <= 64'hFFEEDDCCBBAA9988;
             i_cell_data_fifo_wr <= (({ethertype[7:0], ethertype[15:8]} == ETHER_TYPE ||
                                      {ethertype[7:0], ethertype[15:8]} == ETHER_TYPE_2) ? 1'b1 : 1'b0);
             if (pad_cnt > 0)

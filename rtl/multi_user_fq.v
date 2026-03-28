@@ -1,13 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company:TSN@NNS
-// Engineer:Wenxue Wu
-// Create Date:  2023/11/14
-// Module Name: module multi_user_fq (
-// Target Devices:ZYNQ
-// Tool Versions:VIVADO 2023.2
-// Description:
+// Company:         TSN@NNS
+// Engineer:        Wenxue Wu
+// Create Date:     2025/11/14
+// Module Name:     multi_user_fq
+// Project Name:    MQ
+// Target Devices:  ZYNQ
+// Tool Versions:   VIVADO 2023.2
+// Description:     Multi-user free queue management module that handles pointer
+//                  FIFO operations and address counting for free queue management.
 //////////////////////////////////////////////////////////////////////////////////
+
 module multi_user_fq (
     input        clk,
     input        reset,
@@ -88,9 +91,5 @@ module multi_user_fq (
                 .full(),
                 .data_count()
               );
-
-
-
-
 
 endmodule

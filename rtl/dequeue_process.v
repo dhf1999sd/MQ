@@ -2,10 +2,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         TSN@NNS
 // Engineer:        Wenxue Wu
-// Create Date:     2024/05/15
-// Design Name:     DFQ CAM Dequeue Process
+// Create Date:     2025/05/15
 // Module Name:     dequeue_process
-// Project Name:    DFQ_CAM_v5
+// Project Name:    MQ
 // Target Devices:  ZYNQ
 // Tool Versions:   VIVADO 2023.2
 // Description:     Dequeue process module for DFQ CAM system with FSM control

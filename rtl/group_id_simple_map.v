@@ -1,3 +1,16 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company:         TSN@NNS
+// Engineer:        Wenxue Wu
+// Create Date:     2025/11/14
+// Module Name:     group_id_simple_map
+// Project Name:    MQ
+// Target Devices:  ZYNQ
+// Tool Versions:   VIVADO 2023.2
+// Description:     Simple group ID mapping module based on source and destination
+//                  port information and priority.
+//////////////////////////////////////////////////////////////////////////////////
+
 module group_id_simple_map(
     input  wire [3:0] dst_port,
     input  wire [3:0] src_port,

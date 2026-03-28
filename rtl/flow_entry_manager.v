@@ -2,21 +2,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         TSN@NNS
 // Engineer:        Wenxue Wu
-// Create Date:     2024/07/15
-// Design Name:     Flow Entry Manager
+// Create Date:     2025/07/15
 // Module Name:     flow_entry_manager
-// Project Name:    ATS_with_mult_queue_v13
+// Project Name:    MQ
 // Target Devices:  ZYNQ
 // Tool Versions:   VIVADO 2023.2
 // Description:     This module manages flow entries using RAM-based storage.
-//                  It provides flow parameter lookup and update functionality
-//                  with support for multiple groups and flows per group.
-// Dependencies:    flow_para_ram.v
-//
-// Revision:     v1.0
-// Revision 0.01 - File Created
-// Additional Comments:
-//
 //////////////////////////////////////////////////////////////////////////////////
 
 module flow_entry_manager #(

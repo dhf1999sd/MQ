@@ -2,11 +2,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         TSN@NNS
 // Engineer:        Wenxue Wu
-// Create Date:     2023/11/14
+// Create Date:     2025/11/14
 // Module Name:     local_clock
+// Project Name:    MQ
 // Target Devices:  ZYNQ
 // Tool Versions:   VIVADO 2023.2
-// Description:
+// Description:     Local clock generator module that produces a timestamp counter
+//                  with configurable clock period and timestamp width.
 //////////////////////////////////////////////////////////////////////////////////
 
 module local_clock #(

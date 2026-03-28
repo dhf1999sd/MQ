@@ -2,8 +2,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:          TSN@NNS
 // Engineer:         Wenxue Wu
-// Create Date:      2024/8/6
+// Create Date:     2025/8/6
 // Module Name:      shared_buffer_core
+// Project Name:    MQ
 // Target Devices:   ZYNQ
 // Tool Versions:    VIVADO 2023.2
 // Description:      Shared buffer core for packet switching with ATS support
@@ -33,9 +34,6 @@ module shared_buffer_core #(
     output [63:0]                       o_cell_fifo_din
   );
 
-  //================================================================
-  // Internal Registers
-  //================================================================
   reg                                 i_cell_ptr_fifo_rd;
   reg                                 i_cell_data_fifo_rd;
   reg                                 i_cell_last;
@@ -83,9 +81,6 @@ module shared_buffer_core #(
   reg [NUM_PORT-1:0]                  start_flag;
   reg [2:0]                           port_map;
 
-  //================================================================
-  // Internal Wires
-  //================================================================
   wire                                qm_ptr_full_0;
   wire                                qm_ptr_full_1;
   wire                                qm_ptr_full_2;
@@ -112,9 +107,6 @@ module shared_buffer_core #(
   wire                                ptr_rdy0, ptr_rdy1, ptr_rdy2, ptr_rdy3;
   wire                                ptr_ack0, ptr_ack1, ptr_ack2, ptr_ack3;
 
-  //================================================================
-  // Assignments
-  //================================================================
   assign qm_ptr_full   = ({qm_ptr_full_3, qm_ptr_full_2, qm_ptr_full_1, qm_ptr_full_0} == 4'b0) ? 0 : 1;
   assign i_cell_bp     = (i_cell_data_fifo_depth > 10'd322) | i_cell_ptr_fifo_full;
   assign {ptr_ack3, ptr_ack2, ptr_ack1, ptr_ack0} = ptr_ack;
@@ -128,9 +120,6 @@ module shared_buffer_core #(
   assign sram_addr_a   = {FQ_dout[8:0], sram_cnt_a[2:0]};
   assign sram_din_a    = i_cell_data_fifo_dout[63:0];
 
-  //================================================================
-  // Input Register Pipeline
-  //================================================================
   always @(posedge clk)
   begin
     if (reset)
@@ -151,13 +140,6 @@ module shared_buffer_core #(
     end
   end
 
-  //================================================================
-  // Write State Machine
-  //================================================================
-
-  //================================================================
-  // Write State Machine
-  //================================================================
   always @(posedge clk)
   begin
     if (reset)
@@ -221,7 +203,6 @@ module shared_buffer_core #(
           if (!i_cell_ptr_fifo_empty & !qm_ptr_full & !FQ_empty)
           begin
             arrival_time                <= local_clock[TIMESTAMP_WIDTH-1:0];
-            // i_cell_ptr_fifo_rd          <= 1;
             start_flag[3:0]                  <= i_cell_ptr_fifo_dout[11:8];
             qm_portmap[3:0]             <= i_cell_ptr_fifo_dout[11:8];
             pcp_reg                     <= i_cell_ptr_fifo_dout[57:55];
@@ -417,9 +398,7 @@ module shared_buffer_core #(
       endcase
     end
   end
-  //================================================================
-  // Read State Machine
-  //================================================================
+
   always @(posedge clk)
   begin
     ptr_rd_req_pre[3:0] <= ({ptr_rdy3, ptr_rdy2, ptr_rdy1, ptr_rdy0} & (~o_cell_bp));
@@ -638,9 +617,6 @@ module shared_buffer_core #(
     end
   end
 
-  //================================================================
-  // Data FIFO Instances
-  //================================================================
   fifo_ft_w64_d512 u_fifo_ft_w64_d512 (
                      .clk                (clk),
                      .rst                (reset),
@@ -665,9 +641,6 @@ module shared_buffer_core #(
              .data_count         ()
            );
 
-  //================================================================
-  // Free Queue and Memory Instances
-  //================================================================
   multi_user_fq u_multi_user_fq (
                   .clk                (clk),
                   .reset              (reset),
@@ -704,9 +677,6 @@ module shared_buffer_core #(
                   .doutb              (sram_dout_b)
                 );
 
-  //================================================================
-  // Switch Queue Management Instances
-  //================================================================
   switch_qm u_switch_qm_0 (
               .clk                (clk),
               .reset              (reset),
@@ -775,9 +745,6 @@ module shared_buffer_core #(
               .local_clock        (local_clock)
             );
 
-  //================================================================
-  // Frame Eligibility Calculator Instances
-  //================================================================
   frame_eligbility_calculator u_frame_eligbility_calculator_0 (
                                 .clk                (clk),
                                 .reset              (reset),
@@ -834,9 +801,6 @@ module shared_buffer_core #(
                                 .frame_discard_flag (frame_discard_flag[3])
                               );
 
-  //================================================================
-  // Local Clock Instance
-  //================================================================
   local_clock u_local_clock (
                 .clk                (clk),
                 .reset              (reset),

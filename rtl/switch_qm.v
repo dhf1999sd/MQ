@@ -2,21 +2,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         TSN@NNS
 // Engineer:        Wenxue Wu
-//
-// Create Date:     2024/8/6
-// Design Name:     Queue Management Module
+// Create Date:     2025/8/6
 // Module Name:     switch_qm
-// Project Name:    ATS_with_mult_queue_v11
+// Project Name:    MQ
 // Target Devices:  ZYNQ
 // Tool Versions:   VIVADO 2023.2
-// Description:     Queue Management Module
-//
-// Dependencies:    comparator.v, dequeue_process.v, priority_arbiter.v
-//
-// Revision:     v1.0
-// Revision 0.01 - File Created
-// Additional Comments:
-//
+// Description:     Queue Management Module for ATS with multi-queue flow control
+//                  and priority-based scheduling.
 //////////////////////////////////////////////////////////////////////////////////
 
 module switch_qm #(
